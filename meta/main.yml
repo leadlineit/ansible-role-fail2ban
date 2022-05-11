@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: fail2ban
   namespace: leadlineit
-  author: Stas Stavnichuk
+  author: Stas Stavnichuk and Artem Kasianchuk
   description: Install and configure fail2ban package
   license: BSD
   min_ansible_version: 1.5
@@ -11,7 +11,6 @@ galaxy_info:
       versions:
         - bullseye
         - buster
-        - stretch
   galaxy_tags:
     - system
     - debian

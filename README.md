@@ -3,7 +3,7 @@
 ![Build Status](https://github.com/leadlineit/ansible-role-fail2ban/actions/workflows/ansible-galaxy-ci.yml/badge.svg)
 [![Galaxy Role](https://img.shields.io/badge/Ansible--Galaxy-leadlineit.fail2ban-blue.svg?logo=ansible&logoColor=white)](https://galaxy.ansible.com/leadlineit/fail2ban/)
 
-This role helps to install and configure fail2ban package on a Debian (stretch/buster/bullseye).
+This role helps to install and configure fail2ban package on a Debian (buster/bullseye).
 
 Requirements
 ------------
@@ -84,4 +84,4 @@ BSD
 Author Information
 ------------------
 
-This role was created by Stas Stavnichuk.
+This role was created by Stas Stavnichuk and Artem Kasianchuk.
