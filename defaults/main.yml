@@ -1,0 +1,19 @@
+---
+fail2ban_ignoreip: 
+  - 127.0.0.1
+  - 10.0.0.0/24
+  - 192.168.0.0/16
+  - 172.16.0.0/12
+
+fail2ban_services:
+  - name: ssh
+    port: ssh
+    filter: sshd
+    maxretry: 6
+    logpath: /var/log/auth.log
+
+  - name: asterisk
+    port: 5060,5061
+    filter: asterisk
+    protocol: all
+    logpath: /var/log/asterisk/messages

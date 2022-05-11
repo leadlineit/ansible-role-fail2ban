@@ -1,0 +1,23 @@
+#{{ ansible_managed }}
+[Definition]
+
+actionstart = ipset --create fail2ban-<name> iphash
+              iptables -I <chain> -p <protocol> -m set --match-set fail2ban-<name> src -j DROP
+
+actionstop = iptables -D <chain> -p <protocol> -m set --match-set fail2ban-<name> src -j DROP
+             ipset --flush fail2ban-<name>
+             ipset --destroy fail2ban-<name>
+
+actioncheck = iptables -n -L <chain> | grep -q fail2ban-<name>
+
+actionban = ipset --test fail2ban-<name> <ip> || ipset --add fail2ban-<name> <ip>
+
+actionunban = ipset --test fail2ban-<name> <ip> && ipset --del fail2ban-<name> <ip>
+
+[Init]
+
+name = default
+
+protocol = all
+
+chain = INPUT

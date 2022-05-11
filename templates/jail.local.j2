@@ -1,0 +1,48 @@
+#{{ ansible_managed }}
+[DEFAULT]
+usedns = no
+ignoreip = {% for ignoreip in fail2ban_ignoreip %}{{ ignoreip }}{% if not loop.last %} {% endif %}{% endfor %}{{ ' ' }}
+bantime  = {{ fail2ban_bantime | default("3600") }}
+maxretry = {{ fail2ban_maxretry | default("6") }}
+
+backend = {{ fail2ban_backend | default("polling") }}
+
+destemail = {{ fail2ban_destemail | default("root@localhost") }}
+banaction = {{ fail2ban_banaction | default("iptables-ipset-allports") }}
+mta = {{ fail2ban_mta | default("sendmail") }}
+protocol = {{ fail2ban_protocol | default("all") }}
+chain = {{ fail2ban_chain | default("INPUT") }}
+
+action_ = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+
+action_mw = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+              %(mta)s-whois[name=%(__name__)s, dest="%(destemail)s", protocol="%(protocol)s", chain="%(chain)s"]
+
+action_mwl = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+               %(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", logpath=%(logpath)s, chain="%(chain)s"]
+
+action = %({{ fail2ban_action | default("action_") }})s
+
+{% if fail2ban_services is defined %}
+{% for service in fail2ban_services %}
+[{{ service.name }}]
+
+enabled = {{ service.enabled | default("true") }}
+port = {{ service.port }}
+filter = {{ service.filter }}
+logpath = {{ service.logpath }}
+{% if service.maxretry is defined %}
+maxretry = {{ service.maxretry }}
+{% endif %}
+{% if service.protocol is defined %}
+protocol = {{ service.protocol }}
+{% endif %}
+{% if service.action is defined %}
+action = %({{ service.action }})s
+{% endif %}
+{% if service.banaction is defined %}
+banaction = {{ service.banaction }}
+{% endif %}
+
+{% endfor %}
+{% endif %}

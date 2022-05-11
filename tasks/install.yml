@@ -1,0 +1,12 @@
+---
+- name: Update repo cache and install fail2ban with ipset packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:
+    - fail2ban
+    - ipset
+  notify:
+    - enable fail2ban service
+    - restart fail2ban service

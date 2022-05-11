@@ -1,0 +1,6 @@
+#{{ ansible_managed }}
+[Definition]
+
+loglevel = {{ fail2ban_loglevel | default("INFO") }}
+logtarget = {{ fail2ban_logtarget | default("/var/log/fail2ban.log") }}
+socket = {{ fail2ban_socket | default("/var/run/fail2ban/fail2ban.sock") }}
