@@ -1,14 +1,20 @@
-# Ansible Role Fail2ban
+# Ansible Galaxy role for install and configure fail2ban package.
 
 ![Build Status](https://github.com/leadlineit/ansible-role-fail2ban/actions/workflows/ansible-galaxy-ci.yml/badge.svg)
 [![Galaxy Role](https://img.shields.io/badge/Ansible--Galaxy-leadlineit.fail2ban-blue.svg?logo=ansible&logoColor=white)](https://galaxy.ansible.com/leadlineit/fail2ban/)
 
-This role helps to install and configure fail2ban package on a Debian (buster/bullseye).
+This role helps to install and configure fail2ban package.
+
+Supported OSes
+--------------
+- Debian 12 (bookworm)
+- Debian 11 (bullseye)
+- Debian 10 (buster)
 
 Requirements
 ------------
 
-This role requires Ansible 1.5 or higher.
+This role requires Ansible 2.11 or higher.
 
 Role Variables
 --------------

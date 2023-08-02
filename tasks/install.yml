@@ -8,5 +8,5 @@
     - fail2ban
     - ipset
   notify:
-    - enable fail2ban service
-    - restart fail2ban service
+    - Enable fail2ban service
+    - Restart fail2ban service
