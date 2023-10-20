@@ -23,7 +23,7 @@
       runs-on: ubuntu-latest
       steps:
         - name: checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             path: 'leadlineit.fail2ban'
 
@@ -56,7 +56,7 @@
             - '10'
       steps:
         - name: checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             path: 'leadlineit.fail2ban'
   
@@ -85,7 +85,7 @@
       runs-on: ubuntu-latest
       steps:
         - name: checkout
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             path: 'leadlineit.fail2ban'
   
